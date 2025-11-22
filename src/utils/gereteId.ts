@@ -1,5 +1,5 @@
 import { uuidv7 } from "uuidv7";
 
-export function generateId() {
+export const generateId = (): string => {
   return uuidv7();
-}
+};

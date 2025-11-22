@@ -7,17 +7,23 @@ export default class UserModel {
     name: string;
     email: string;
     password: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 
     constructor(
         id: string,
         name: string,
         email: string,
-        password: string
+        password: string,
+        createdAt?: Date,
+        updatedAt?: Date
     ) {
         this.id = id ?? generateId();
         this.name = name;
         this.email = email;
         this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
         static fromCreate(data: UserCreateInput): UserModel {
