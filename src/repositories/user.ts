@@ -31,4 +31,25 @@ export default class UserRepository {
       new Date(user.updatedAt || new Date())
     );
   }
+
+  async findByEmail(email: string): Promise<UserModel | null> {
+    const user = await this.db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.email, email))
+      .get();
+
+    if (!user) {
+      return null;
+    }
+    
+    return new UserModel(
+      user.id,
+      user.name,
+      user.email,
+      user.password,
+      new Date(user.createdAt),
+      new Date(user.updatedAt)
+    );
+  }
 }

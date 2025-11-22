@@ -9,11 +9,12 @@ const db = drizzle(client);
 
 async function main() {
   const user: typeof usersTable.$inferInsert = {
+    id: crypto.randomUUID(),
     name: 'John',
     email: 'john@example.com',
     password: 'securepassword',
     createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   };
 
   await db.insert(usersTable).values(user);

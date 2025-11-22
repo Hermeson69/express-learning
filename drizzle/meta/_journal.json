@@ -15,6 +15,13 @@
       "when": 1763827903735,
       "tag": "0001_absent_deathstrike",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1763829013540,
+      "tag": "0002_fancy_martin_li",
+      "breakpoints": true
     }
   ]
 }
