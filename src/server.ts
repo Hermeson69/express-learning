@@ -10,8 +10,10 @@ const db = drizzle(client);
 async function main() {
   const user: typeof usersTable.$inferInsert = {
     name: 'John',
-    age: 30,
     email: 'john@example.com',
+    password: 'securepassword',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 
   await db.insert(usersTable).values(user);
@@ -23,7 +25,7 @@ async function main() {
   await db
     .update(usersTable)
     .set({
-      age: 31,
+      password: 'newsecurepassword',
     })
     .where(eq(usersTable.email, user.email));
   console.log('User info updated!')
