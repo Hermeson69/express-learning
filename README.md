@@ -8,12 +8,7 @@ npm install
 
 ## Configuração
 
-Crie um arquivo `.env` na raiz do projeto:
-
-```
-DB_URL=file:./src/db/database.sqlite
-PORT=3000
-```
+Crie um arquivo `.env` na raiz do projeto (no meu caso foi usando sqlite).
 
 ## Executar
 
