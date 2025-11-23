@@ -1,11 +1,8 @@
 import { UserService } from "../services";
 import {
   UserCreateInput,
-  UserUpdateInput,
-  UserResponse,
   UserLogin,
   AuthResponse,
-  Message,
   MessageSchema,
 } from "../schemas";
 
