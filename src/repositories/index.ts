@@ -1,3 +1,3 @@
-import UserRepository from "./user.js";
+import UserRepository from "./user";
 
 export { UserRepository };

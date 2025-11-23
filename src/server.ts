@@ -1,38 +1,37 @@
-import 'dotenv/config';
-import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client';
-import { eq } from 'drizzle-orm';
-import { usersTable } from './db/schema';
+import "dotenv/config";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+import express from "express";
+import userRoutes from "./routes/user";
 
-const client = createClient({ url: process.env.BD_URL! });
-const db = drizzle(client);
+const app = express();
+const port = process.env.PORT || 3000;
 
-async function main() {
-  const user: typeof usersTable.$inferInsert = {
-    id: crypto.randomUUID(),
-    name: 'John',
-    email: 'john@example.com',
-    password: 'securepassword',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
-  };
+app.use(express.json());
 
-  await db.insert(usersTable).values(user);
-  console.log('New user created!')
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Express Learning API",
+      description: "Documentação da API utilizando Express",
+      version: "1.0.0",
+    },
+    servers: [
+      {
+        url: `http://localhost:${port}`,
+      },
+    ],
+  },
+  apis: ["./src/routes/*.ts"],
+};
 
-  const users = await db.select().from(usersTable);
-  console.log('Getting all users from the database: ', users)
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-  await db
-    .update(usersTable)
-    .set({
-      password: 'newsecurepassword',
-    })
-    .where(eq(usersTable.email, user.email));
-  console.log('User info updated!')
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api", userRoutes);
 
-  await db.delete(usersTable).where(eq(usersTable.email, user.email));
-  console.log('User deleted!')
-}
-
-main();
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Docs available at http://localhost:${port}/docs`);
+});
