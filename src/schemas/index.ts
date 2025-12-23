@@ -16,6 +16,15 @@ import {
     type AuthResponse,
 } from './user';
 
+import {
+    TodoListCreateSchema,
+    TodoListUpdateSchema,
+    TodoListResponseSchema,
+    type TodoListCreateInput,
+    type TodoListUpdateInput,
+    type TodoListResponse,
+} from './todoList';
+
 export{
     UserCreateSchema,
     UserUpdateSchema,
@@ -23,6 +32,9 @@ export{
     UserLoginSchema,
     AuthSchema,
     MessageSchema,
+    TodoListCreateSchema,
+    TodoListUpdateSchema,
+    TodoListResponseSchema
 }
 export type {
     UserCreateInput,
@@ -30,6 +42,9 @@ export type {
     UserResponse,
     UserLogin,
     AuthResponse,
-    Message
+    Message,
+    TodoListCreateInput,
+    TodoListUpdateInput,
+    TodoListResponse
 } 
 

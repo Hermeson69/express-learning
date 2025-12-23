@@ -5,13 +5,16 @@ export const TodoListCreateSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
   deliverySchedule: z.string().min(1, "Delivery Schedule is required"),
-  userId: z.string().min(1, "User ID is required"),
+  userName: z.string().min(1, "User name is required"),
 });
 
 export const TodoListUpdateSchema = z.object({
   title: z.string().min(1, "Title is required").optional(),
   description: z.string().min(1, "Description is required").optional(),
-  deliverySchedule: z.string().min(1, "Delivery Schedule is required").optional(),
+  deliverySchedule: z
+    .string()
+    .min(1, "Delivery Schedule is required")
+    .optional(),
   isCompleted: z.boolean().optional(),
   updatedAt: z.string().optional(),
 });

@@ -1,3 +1,4 @@
 import userRoutes from "./user";
+import todoListRoutes from "./todolist";
 
-export default userRoutes;
+export { userRoutes, todoListRoutes };

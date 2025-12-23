@@ -1,6 +1,6 @@
 
 import { is } from "drizzle-orm";
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const usersTable = sqliteTable("users_table", {
   id: text().primaryKey(),
@@ -16,7 +16,7 @@ export const todoListsTable = sqliteTable("todo_lists_table", {
   title: text().notNull(),
   description: text().notNull(),
   deliverySchedule: text().notNull(),
-  isCompleted: text().notNull().default("false"),
+  isCompleted: integer({ mode: "boolean" }).notNull().default(false),
   userId: text()
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),

@@ -53,6 +53,27 @@ export default class UserRepository {
     );
   }
 
+  async findByName(name: string): Promise<UserModel | null> {
+    const user = await this.db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.name, name))
+      .get();
+
+    if (!user) {
+      return null;
+    }
+
+    return new UserModel(
+      user.id,
+      user.name,
+      user.email,
+      user.password,
+      user.createdAt,
+      user.updatedAt
+    );
+  }
+
   async getUserById(id: string): Promise<UserModel | null> {
     const user = await this.db
       .select()
