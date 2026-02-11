@@ -13,7 +13,7 @@ Crie um arquivo `.env` na raiz do projeto (no meu caso foi usando sqlite).
 ## Executar
 
 ```bash
-npm start
+npm start ou yarn start
 ```
 
 ## Scripts
